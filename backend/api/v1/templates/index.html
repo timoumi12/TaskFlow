@@ -1,0 +1,93 @@
+{% extends "mainLayout.html" %}
+
+{% block title %}
+    Home Page
+{% endblock %}
+
+{% block main %}
+    <main>
+        <div class="photo-container">
+            <div class="Mainphoto">
+                <div class="btn-grp">
+                    <h2 style="margin-bottom: 16px;">Elevate your productivity with TaskFlow, the intuitive task management app designed to streamline your workflow, prioritize tasks, and keep you in control of your daily commitments with ease.</h2>
+                    <div class="homeTF">
+
+                    </div>
+                </div>
+            </div>
+            <div class="sndphoto">
+                <div class="btn-grp">
+                    <button id="btn1" onclick="openModal('modal-hotd')">Watch Trailer</button>
+                    <button><a id="btn2" href="https://www.imdb.com/title/tt11198330/">Find Out More</a></button>
+                </div>
+            </div>
+        </div>
+
+        <div id="modal-hotd" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal-hotd')">&times;</span>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/DotnJ7tTA34" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <div class="descrption1">
+            <h2 id="mainwhatever" style="margin-bottom: 6px;">WHAT WE HAVE TO OFFER</h2>
+            <h4 style="margin-bottom: 6px;">
+                TaskFlow simplifies your daily routine by providing an intuitive and user-friendly interface, making task management a breeze.
+            </h4>
+            
+            <h4>See how we can help you to save time, improve your focus, and achieve your goals.</h4>
+            
+            <h2>Seamless Collaboration</h2>
+            <h4>Collaborate seamlessly with team members, assign tasks, and achieve goals together with TaskFlow's powerful collaboration features.</p>
+            
+            <h2>Smart Reminders</h2>
+            <h4>Never miss a deadline again! TaskFlow keeps you on track with smart reminders, ensuring you stay ahead of your schedule.</p>
+
+            <h2>Secure Data Management</h2>
+            <h4>Rest easy knowing your data is secure. TaskFlow employs robust security measures to protect your information.</p>
+        </div>
+
+        <div class="series_movies">
+            <div class="movies">
+                <img src="https://blog-cdn.everhour.com/assets/images/new-design/screens/resources/trello-preview.jpg" class="photo12">
+                <a href="/trending" id="moviebtn">Movies</a>
+            </div>
+        </div>
+
+        <!-- <div class="_topcontainer">
+            <div class="_newsnotes">
+                <h1 style="margin-top: 15px;margin-bottom: 10px;">All-Time Favorites</h1>
+                <p style="margin-top: 5px;margin-bottom: 20px;">Check out our top picks and experience cinema at its finest!</p>
+            </div>
+            <div class="_newsopp">
+                <div class="_the_img">
+                    <img class="_newsimg" src="/static/Untitled design.jpg" style="margin-left: 20px;">
+                </div>
+                <div class="_imgdsc">
+                    <p style="margin-left: 20px;">We present to you our collection of All Time Favorite films that have captured the hearts and minds of audiences across generations. The selection of the top 100 movies is based on a variety of factors, such as critical acclaim, box office success, and cultural impact. These movies have transcended time and continue to be loved by audiences worldwide.From the epic scale of "Gone with the Wind" to the intimate drama of "The Godfather," these movies have become cultural touchstones and continue to inspire future generations of filmmakers.</p>
+                    <a href="/topmovies" style="margin-left: 20px;">Find Out More.</a>
+                </div>
+            </div>
+        </div> -->
+
+        <div class="descrption2">
+            <h2 style="margin-bottom: 6px;">Sign Up And Get Your First Private Workspace</h2>
+            <h4 style="margin-bottom: 6px;">
+            Users Can Have Their Own Private Workspaces, Share And Get Invited To Other's Workspaces.
+            </h4>
+            <h4>Enhance Your Project Management With TaskFlow.</h4>
+        </div>
+
+        <div class="select_plan" style="padding-left: 40px;">
+            <div class="plans1">
+                <input type="email" name="email" class="signupform" placeholder="Enter Your Email In Here">
+            </div>
+
+            <div class="plans2">
+                <h1 style="text-align: center; margin-bottom: 15px;">Join our community and start enjoying the benefits!</h1>
+                <h1><a href="/signup" style="color: #528ea3; margin-top: 10px;">Sign Up Now.</a></h1>
+            </div>
+        </div>
+    </main>
+{% endblock %}
