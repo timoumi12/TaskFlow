@@ -35,7 +35,7 @@ class Storage:
                 for obj in objs:
                     new_dict[obj.id] = obj
         return (new_dict)
-    
+
     def new(self, obj):
         """add the object to the current database session"""
         self.__session.add(obj)
@@ -48,7 +48,7 @@ class Storage:
         """delete from the current database session obj if not None"""
         if obj is not None:
             self.__session.delete(obj)
-    
+
     def getUserByEmail(self, email):
         """
         Returns the object based on the class name and its USERNAME, or
@@ -87,6 +87,21 @@ class Storage:
         """returns the workspace speicified by a unique code"""
         return self.__session.query(workspace).filter_by(code=code).one()
 
+    def getWorkspaceById(self, id):
+        """returns the workspace speicified by it's id"""
+        return self.__session.query(workspace).filter_by(id=id).one()
+
     def getWorkspaceTask(self, workspace_id):
         """returns the workspace's tasks"""
         return self.__session.query(task).filter_by(workspace_id=workspace_id)
+
+    def addTask(self, **task_data):
+        """adds a new task"""
+        new_task = task(**task_data)
+        new_task.save()
+        return ''
+
+    def getWorkspaceMembers(self, workspace_id):
+        """retrieves the workspaces members"""
+        target_workspace = self.getWorkspaceById(workspace_id)
+        return target_workspace.members
