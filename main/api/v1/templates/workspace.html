@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="../static/style.css">
     <script src="../static/drag.js" defer></script>
     <script src="../static/todo.js" defer></script>
+    <script src="../static/script.js"></script>
     <title>Taskflow</title>
 </head>
 
@@ -108,20 +109,19 @@
             <main class="content px-3 py-2">
                 <div class="container-fluid">
                   <h3>Workspace Name : {{wsp_infos.name}} </h3>
-                      <form id="todo-form">
-                        <input type="text" placeholder="New TODO..." id="todo-input" />
+                    <form id="todo-form">
+                        <input type="text" placeholder="New TODO..." id="todo-input" name="todo-input" />
                         <button type="submit">Add +</button>
-                      </form>
-                      <div class="lanes">
+                    </form>
+                    <div class="lanes">
                         <div class="swim-lane" id="todo-lane">
-                          <h3 class="heading">TODO</h3>
+                            <h3 class="heading">TODO</h3>
                         </div>
                         <div class="swim-lane">
-                          <h3 class="heading">Doing</h3>
+                            <h3 class="heading">Doing</h3>
                         </div>
                         <div class="swim-lane">
-                          <h3 class="heading">Done</h3>
-                          
+                            <h3 class="heading">Done</h3>
                         </div>
                     </div>
                 </div>
@@ -191,56 +191,54 @@
                 </div>
                 
                 <!-- Modal Body -->
-                    <form class ="modal-body" id="myForm" >
-                        <div style="display: flex; width: 100%; ">
-                         <label for="due-date" style="padding: 20px;">Start Date:</label>
+                <form class ="modal-body" id="myForm" method="post">
+                    <div style="display: flex; width: 100%; ">
+                        <label for="due-date" style="padding: 20px;">Start Date:</label>
                         <input type="date" id="start-date" name="start-date">
                         
                         <label for="due-date" style="padding: 20px;">Due Date:</label>
                         <input type="date" id="due-date" name="due-date">
-                        </div>
+                    </div>
+                    
+                    
+                    <p id="showListIcon" style="padding: 20px;">members</p>
+                    <ul id="myList">
+                        {% for member in members %}
+                        <li>
+                        <label>
+                            <input type="radio" name="selected-member" value="{{ member.id }}">
+                            {{ member.email }}
+                        </label>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <input type="hidden" id="selected-member" name="selected-member">
+                    <div style="display: flex; flex-direction: column;">
+                        <label style="padding: 20px;">
+                        <input type="radio" name="priority" value="low" >
+                        Low Priority
+                        </label>
                         
+                        <label style="padding: 20px;">
+                        <input type="radio" name="priority" value="medium" >
+                        Medium Priority
+                        </label>
                         
-                        <p id="showListIcon" style="padding: 20px;">members</p>
-                        <ul id="myList">
-                          {% for member in members %}
-                          <li>{{member.email}}</li>
-                          {% endfor %}
-                        </ul>
-                        <form style="display: flex; flex-direction: column;">
-                          <label style="padding: 20px;">
-                            <input type="radio" name="priority" value="low" >
-                            Low Priority
-                          </label>
-                          
-                          <label style="padding: 20px;">
-                            <input type="radio" name="priority" value="medium" >
-                            Medium Priority
-                          </label>
-                          
-                          <label style="padding: 20px;">
-                            <input type="radio" name="priority" value="high" >
-                            High Priority
-                          </label>
-                        </form>
-
-                        
-
-          
-                        
-                        
-
-                        <div style="padding: 20px;">Description:</div>
-                        <textarea style="margin: 0 20px;" id="message" name="message" rows="5" cols="55"></textarea>
-                       
-                        
-                    </form> 
-                
-                <!-- Modal Footer -->
-                <div class="modal-footer">
-                    <!--a button to view a workspace-->
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Save</button>
-                </div>
+                        <label style="padding: 20px;">
+                        <input type="radio" name="priority" value="high" >
+                        High Priority
+                        </label>
+                    </div>
+                    <div>
+                        <label style="padding: 20px;">Description:</label>
+                        <textarea style="margin: 0 20px;" id="message" name="description" rows="5" cols="55"></textarea>
+                    </div>
+                    <input type="hidden" id="todo-title" name="todo-title"> <!-- Hidden input for the title -->
+                    <div class="modal-footer">
+                        <!--a button to view a workspace-->
+                        <button type="submit" class="btn btn-secondary" data-dismiss="modal">Save</button>
+                    </div>
+                </form>
                 
             </div>
         </div>
@@ -251,12 +249,12 @@
         crossorigin="anonymous"></script>
     <script src="script.js"></script>
     <script>
+    
     document.getElementById('showListIcon').addEventListener('click', function() {
       var myList = document.getElementById('myList');
       // Toggle the display property
       myList.style.display = (myList.style.display === 'none' || myList.style.display === '') ? 'block' : 'none';
-    });
-    
+    });    
   </script>
 </body>
 

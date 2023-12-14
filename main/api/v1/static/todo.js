@@ -7,6 +7,10 @@ form.addEventListener("submit", (e) => {
     e.preventDefault();
     const value = input.value;
 
+    // Set the value of the hidden input in the second form
+    document.getElementById('todo-title').value = value;
+    
+
     if (!value) return;
 
     const newTask = document.createElement("button");

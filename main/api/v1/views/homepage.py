@@ -46,7 +46,6 @@ def index():
         action = request.form.get("action")
         uid = session["uid"]
         if action == "addworksp":
-            print("AAAAAAAAAAAAAAAAAAAAAAAH")
             # get workspace name
             wspace_name = request.form.get("name")
             new_workspace = workspace(id_admin=uid, name=wspace_name)

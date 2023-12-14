@@ -1,5 +1,5 @@
 from api.v1.views import app_views
-from flask import request, render_template, session
+from flask import request, render_template, session, redirect, url_for
 from models import storage
 # from flask_session import session
 # from models import user
@@ -15,12 +15,14 @@ def workspace(workspace_id):
     userWorkspaces = storage.getUserWorkspaces(uid)
     memberOf = userWorkspaces["memberOf"]
     if request.method == "POST":
-        title = request.form.get('title')
-        member_id = request.form.get('member_id')
+        title = request.form.get('todo-title')
+        member_id = request.form.get('selected-member')
         priority = request.form.get('priority')
         description = request.form.get('description')
-        task_data = {"title": title, "member_id": member_id, "priority": priority, "description": description}
+        task_data = {"title": title, "member_id": member_id, "priority": priority, "description": description, "workspace_id": workspace_id}
+        print(task_data)
         storage.addTask(**task_data)
+        return redirect(url_for('app_views.workspace', workspace_id=workspace_id))
     else:
         # retrieve the members of the specific workspace
         members = storage.getWorkspaceMembers(workspace_id)
