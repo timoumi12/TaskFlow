@@ -10,6 +10,7 @@ form.addEventListener("submit", (e) => {
     // Set the value of the hidden input in the second form
     document.getElementById('todo-title').value = value;
     
+    console.count(value);
 
     if (!value) return;
 

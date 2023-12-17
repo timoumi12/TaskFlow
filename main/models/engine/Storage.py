@@ -93,7 +93,7 @@ class Storage:
 
     def getWorkspaceTask(self, workspace_id):
         """returns the workspace's tasks"""
-        return self.__session.query(task).filter_by(workspace_id=workspace_id)
+        return self.__session.query(task).filter_by(workspace_id=workspace_id).all()
 
     def addTask(self, **task_data):
         """adds a new task"""
@@ -105,3 +105,21 @@ class Storage:
         """retrieves the workspaces members"""
         target_workspace = self.getWorkspaceById(workspace_id)
         return target_workspace.members
+    
+    def getTaskById(self, task_id):
+        """retrieves the task by id"""
+        return self.__session.query(task).filter_by(id=task_id).one()
+    
+    def deleteWorkspace(self, code):
+        """deletes workspace"""
+        wsp = self.getWorkspaceByCode(code)
+        print(wsp.code)
+        self.__session.delete(wsp)
+        self.__session.commit()
+
+    def deleteTask(self, id):
+        """deletes task"""
+        task = self.getTaskById(id)
+        print(task.title)
+        self.__session.delete(task)
+        self.__session.commit()
