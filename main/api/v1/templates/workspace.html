@@ -102,34 +102,86 @@
                 <button class="btn" type="button" data-bs-theme="dark">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <a href="#">About</a>
-                <a href="#">Services</a>
-                <a href="#">Contact</a>
-                <a href="/logout" id="logoutlink" class="ml-auto">Log Out</a>
+                <a href="/aboutus">About</a>
+                
+                <a href="/contactus">Contact</a>
+                <a href="/logout" id="logoutlink" >Log Out</a>
             </nav>
             <main class="content px-3 py-2">
                 <div class="container-fluid">
-                  <h3>Workspace Name : {{wsp_infos.name}} </h3>
+                    <div style="display: flex; flex-direction: row;">
+                        <h3>Workspace Name : {{wsp_infos.name}} </h3>
+                        <a class="sidebar-linkXX" href="#" data-toggle="modal" data-target="#UpdateModal">Edit</a>
+                    </div>
+
+                    <div class="modal" id="UpdateModal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Edit Workspace Name</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                
+                                <!-- Modal Body -->
+                                <form method="post" class ="modal-body" id="myForm99">
+                                    <input type="hidden" name="action" value="updatewsp">
+                                    <label for="userInput">Re-name your workspace:</label>
+                                    <input type="text" id="userInput" name="name">
+                                </form> 
+                                
+                                <!-- Modal Footer -->
+                                <div class="modal-footer">
+                                    <!--a button to view a workspace-->
+                                    <button form="myForm99" type="submit" class="btn btn-secondary" data-dismiss="modal">Confirm</button>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+
                     <form id="todo-form">
                         <input type="text" placeholder="New TODO..." id="todo-input" name="todo-input" />
                         <button type="submit">Add +</button>
                     </form>
                     <div class="lanes">
                         <div class="swim-lane" id="todo-lane">
-                            <h3 class="heading">TODO</h3>
-                            {% for task in tasks %}
-                            <a href="{{ url_for('app_views.task', task_id=task.id) }}" class="task-link" draggable="true">
-                                <div class="task-button">
+                          <h3 class="heading">TODO</h3>
+                          {% for task in tasks %}
+                            {% if task.state == "todo" %}
+                            <a href="{{ url_for('app_views.task', task_id=task.id) }}" class="task" data-task-id="{{ task.id }}" >
+                                <div>
                                     {{ task.title }}
                                 </div>
                             </a>
+                             {% endif %}
                             {% endfor %}
                         </div>
-                        <div class="swim-lane">
-                            <h3 class="heading">Doing</h3>
+                        <div class="swim-lane" id="doing-lane">
+                          <h3 class="heading">Doing</h3>
+                          {% for task in tasks %}
+                            {% if task.state == "doing" %}
+                            <a href="{{ url_for('app_views.task', task_id=task.id) }}" class="task" data-task-id="{{ task.id }}" >
+                                <div>
+                                    {{ task.title }}
+                                </div>
+                            </a>
+                             {% endif %}
+                            {% endfor %}
                         </div>
-                        <div class="swim-lane">
-                            <h3 class="heading">Done</h3>
+                        <div class="swim-lane" id="done-lane">
+                          <h3 class="heading">Done</h3>
+                          {% for task in tasks %}
+                            {% if task.state == "done" %}
+                            <a href="{{ url_for('app_views.task', task_id=task.id) }}" class="task" data-task-id="{{ task.id }}" >
+                                <div>
+                                    {{ task.title }}
+                                </div>
+                            </a>
+                             {% endif %}
+                            {% endfor %}
+                          
                         </div>
                     </div>
                 </div>

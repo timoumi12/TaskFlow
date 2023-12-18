@@ -2,6 +2,8 @@ const form = document.getElementById("todo-form");
 const input = document.getElementById("todo-input");
 const todoLane = document.getElementById("todo-lane");
 const modal = document.getElementById("myModal");
+const save = document.getElementById("save_btn");
+
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -13,6 +15,7 @@ form.addEventListener("submit", (e) => {
     console.count(value);
 
     if (!value) return;
+    openModal(value);
 
     const newTask = document.createElement("button");
     newTask.classList.add("task");
@@ -50,3 +53,7 @@ window.onclick = function(event) {
         closeModal();
     }
 }
+
+
+
+

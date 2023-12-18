@@ -114,42 +114,45 @@
                         <div class="task-info">
                             <div class="info-item">
                                 <i class="fas fa-user"></i>
-                                <span>Attributed To:</span>
-                                {{member_infos.name}} - {{member_infos.email}}
+                                <span>Attributed To : </span>
+                                <b> {{member_infos.name}} - {{member_infos.email}}</b>
                             </div>
                             <div class="info-item">
                                 <i class="fas fa-sitemap"></i>
-                                <span>Part of Workspace:</span>
-                                {{wsp_infos.name}} Owned By {{owner.name}} - {{owner.email}}
+                                <span>Part of Workspace : </span>
+                                <b> {{wsp_infos.name}}</b> Owned By <b> {{owner.name}} - {{owner.email}}</b>
                             </div>
                             <div class="info-item">
                                 <i class="fas fa-calendar-alt"></i>
-                                <span>Task Assigned At:</span>
-                                {{task_infos.start_date}}
+                                <span>Task Assigned At : </span>
+                                <b> {{task_infos.start_date}}</b>
                             </div>
                             <div class="info-item">
                                 <i class="fas fa-calendar-times"></i>
-                                <span>Due Date:</span>
-                                {{task_infos.due_date}}
+                                <span>Due Date : </span>
+                                <b> {{task_infos.due_date}}</b>
                             </div>
                             <div class="info-item">
                                 <i class="fas fa-exclamation-circle"></i>
-                                <span>Priority:</span>
-                                {{task_infos.priority}}
+                                <span>Priority : </span>
+                                <b> {{task_infos.priority}}</b>
+                            </div>
+                            <div class="description">
+                                <h2 class="task-title">Description :</h2>
+                            <p>{{task_infos.description}}</p>
+                            </div>
+                            <div>
+                                <form method="POST" action="{{url_for('app_views.task', task_id=task_infos.id)}}" class ="modal-body" id="myForm3">
+                                    <input type="hidden" name="action" value="deltask">
+                                    <button style="margin-top: 15px; background-color: #A46C6C;" type="submit" class="btn btn-secondary" form="myForm3">Delete</button>
+                                </form>
+                                <button style="margin-top: 15px; background-color: #A46C6C;" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#EditModal">Edit</button>
                             </div>
                         </div>
-                        <div class="description">
-                            <h4>Description:</h4>
-                            <p>{{task_infos.description}}</p>
-                        </div>
+                        
                     </div>
                 </div>
-                <div>
-                    <form method="POST" action="{{url_for('app_views.task', task_id=task_infos.id)}}" class ="modal-body" id="myForm3">
-                        <input type="hidden" name="action" value="deltask">
-                        <button type="submit" class="btn btn-secondary" form="myForm3">Delete</button>
-                    </form>
-                </div>
+                
             </main>
 
             
@@ -231,6 +234,50 @@
                     <!--a button to view a workspace-->
                     <button type="submit" class="btn btn-secondary" form="myForm3" data-dismiss="modal">Delete</button>
                 </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="EditModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Task</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                
+                <!-- Modal Body -->
+                    <form style="width: fit-content; height: fit-content;" method="post" action="{{url_for('app_views.task', task_id=task_infos.id)}}" class ="modal-body" id="myForm4">
+                        <label for="title">Edit title:</label>
+                        <input type="text" id="title" name="title" value="{{task_infos.title}}">
+                        <br>
+                        
+                        <label for="member">Edit member:</label>
+                        <input type="text" id="member" name="member" value="{{task_infos.member_id}}">
+                        <br>
+                        
+                        <label for="priority">Edit priority:</label>
+                        <input type="text" id="priority" name="priority" value="{{task_infos.priority}}">
+                        <br>
+                        
+                        <label for="state">Edit state:</label>
+                        <input type="text" id="state" name="state" value="{{task_infos.state}}">
+                        <br>
+                        
+                        <label for="description">Edit description:</label>
+                        <input type="text" id="description" name="description" value="{{task_infos.description}}">
+                        <input type="hidden" name="action" value="edittask">
+                    <div class="modal-footer">
+                    <!--a button to view a workspace-->
+                    <button type="submit" class="btn btn-secondary" form="myForm4" >Edit</button>
+                </div>
+            </form>
+                
+                <!-- Modal Footer -->
+                
                 
             </div>
         </div>

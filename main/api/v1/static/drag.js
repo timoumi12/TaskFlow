@@ -15,7 +15,22 @@ droppables.forEach((zone) => {
     e.preventDefault();
 
     const bottomTask = insertAboveTask(zone, e.clientY);
+    
     const curTask = document.querySelector(".is-dragging");
+
+
+    // Update the state attribute based on the swim lane (column) being dragged over
+    switch (zone.id) {
+      case "todo-lane":
+        updateTaskState(curTask, "todo");
+        break;
+      case "doing-lane":
+        updateTaskState(curTask, "doing");
+        break;
+      case "done-lane":
+        updateTaskState(curTask, "done");
+        break;
+    }
 
     if (!bottomTask) {
       zone.appendChild(curTask);
@@ -43,4 +58,25 @@ const insertAboveTask = (zone, mouseY) => {
   });
 
   return closestTask;
+};
+
+const updateTaskState = async (taskElement, newState) => {
+  const taskId = taskElement.getAttribute("data-task-id");
+
+  try {
+    const response = await fetch(`/update_task_state/${taskId}/${newState}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (response.ok) {
+      console.log("Task state updated successfully");
+    } else {
+      console.error("Failed to update task state");
+    }
+  } catch (error) {
+    console.error("Error updating task state:", error);
+  }
 };

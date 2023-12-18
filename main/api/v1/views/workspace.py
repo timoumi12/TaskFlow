@@ -16,10 +16,17 @@ def workspace(workspace_id):
     memberOf = userWorkspaces["memberOf"]
     if request.method == "POST":
         title = request.form.get('todo-title')
-        member_id = request.form.get('selected-member')
+        if request.form.get('selected-member'):
+            member_id = request.form.get('selected-member')
+        else:
+            member_id = uid
+        if request.form.get("action") == 'updatewsp':
+            name = request.form.get("name")
+            storage.updateWorkspace(workspace_id, name)
+            return redirect(url_for('app_views.workspace', workspace_id=workspace_id))
         priority = request.form.get('priority')
         description = request.form.get('description')
-        task_data = {"title": title, "member_id": member_id, "priority": priority, "description": description, "workspace_id": workspace_id}
+        task_data = {"title": title, "member_id": member_id, "priority": priority, "description": description, "workspace_id": workspace_id, 'state': 'todo'}
         print(task_data)
         storage.addTask(**task_data)
         return redirect(url_for('app_views.workspace', workspace_id=workspace_id))

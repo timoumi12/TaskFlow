@@ -123,3 +123,19 @@ class Storage:
         print(task.title)
         self.__session.delete(task)
         self.__session.commit()
+
+    def updateWorkspace(self, workspace_id, name):
+        """updates workspace"""
+        wsp = self.getWorkspaceById(workspace_id)
+        wsp.name = name
+        self.__session.commit()
+
+    def editTask(self, id, edit_data):
+        """updates task"""
+        task = self.getTaskById(id)
+        task.title = edit_data["title"]
+        task.priority = edit_data["priority"]
+        task.member_id = edit_data["member_id"]
+        task.state = edit_data["state"]
+        task.description = edit_data["description"]
+        self.__session.commit()

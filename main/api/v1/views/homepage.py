@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """homepage.py file"""
 from api.v1.views import app_views
-from flask import redirect, render_template, request, session, url_for
+from flask import redirect, render_template, request, session, url_for, jsonify
 #from models.engine.Storage import Storage
 from models import storage
 from models.workspaces import workspace
@@ -69,12 +69,22 @@ def index():
             member_id = uid
             priority = request.form.get('priority')
             description = request.form.get('description')
-            task_data = {"title": title, "member_id": member_id, "priority": priority, "description": description, "workspace_id": private.id}
+            task_data = {"title": title, "member_id": member_id, "priority": priority, "description": description, "workspace_id": private.id, 'state': 'todo'}
             print(task_data)
             storage.addTask(**task_data)
             return redirect("/home")
+            
         elif action == "delworksp":
             code = request.form.get("code")
             print(code)
             storage.deleteWorkspace(code)
             return redirect("/home")
+
+@app_views.route('/contactus')
+def contact_us():
+    return render_template('contactus.html')
+@app_views.route('/aboutus')
+def about_us():
+    return render_template('aboutus.html')
+    
+

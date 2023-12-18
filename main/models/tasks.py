@@ -14,3 +14,4 @@ class task(utils, Base):
     due_date = Column(DateTime, default=datetime.utcnow, nullable=False)
     priority = Column(String(128), nullable=True)
     description = Column(String(128), nullable=True)
+    state = Column(String(128))

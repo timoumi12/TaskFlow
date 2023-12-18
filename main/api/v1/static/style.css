@@ -5,6 +5,59 @@
 }
 
 
+/* Add your existing CSS styles here */
+
+.task-details {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.task-title {
+  color: #A46C6C;
+  margin-bottom: 30px;
+}
+
+.info-section {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+.info-item {
+  flex: 1 1 300px;
+  margin-right: 20px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.info-item i {
+  margin-right: 10px;
+  font-size: 20px;
+  color: #A46C6C;
+}
+
+.description {
+  margin-top: 20px;
+  margin-left: 220px;
+  background-color: #d6d6d6;
+  border-radius: 10px;
+  padding: 20px;
+  width: fit-content;
+}
+
+.action-buttons {
+  margin-top: 20px;
+}
+
+.delete-form {
+  display: inline-block;
+}
+
+
+
 .task-link {
   text-decoration: none; /* Remove underline from the link */
 }
@@ -25,6 +78,15 @@
   cursor: pointer;
 }
 
+.sidebar-linkXX {
+  text-decoration: none;
+  margin-left: 20px;
+  background-color: #A46C6C;
+  color: #EEE;
+  text-align: center;
+  padding: 2px;
+  border-radius: 15px;
+}
 
 body {
 

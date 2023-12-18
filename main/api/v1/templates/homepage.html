@@ -90,9 +90,8 @@
                 <button class="btn" type="button" data-bs-theme="dark">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <a href="#">About</a>
-                <a href="#">Services</a>
-                <a href="#">Contact</a>
+                <a href="/aboutus">About</a>
+                <a href="/contactus">Contact</a>
                 <a href="/logout" id="logoutlink">Log Out</a>
             </nav>
             <main class="content px-3 py-2">
@@ -106,18 +105,38 @@
                         <div class="swim-lane" id="todo-lane">
                           <h3 class="heading">TODO</h3>
                           {% for task in tasks %}
-                            <a href="{{ url_for('app_views.task', task_id=task.id) }}" class="task-link" draggable="true">
-                                <div class="task-button">
+                            {% if task.state == "todo" %}
+                            <a href="{{ url_for('app_views.task', task_id=task.id) }}" class="task" data-task-id="{{ task.id }}" >
+                                <div>
                                     {{ task.title }}
                                 </div>
                             </a>
+                             {% endif %}
                             {% endfor %}
                         </div>
-                        <div class="swim-lane">
+                        <div class="swim-lane" id="doing-lane">
                           <h3 class="heading">Doing</h3>
+                          {% for task in tasks %}
+                            {% if task.state == "doing" %}
+                            <a href="{{ url_for('app_views.task', task_id=task.id) }}" class="task" data-task-id="{{ task.id }}" >
+                                <div>
+                                    {{ task.title }}
+                                </div>
+                            </a>
+                             {% endif %}
+                            {% endfor %}
                         </div>
-                        <div class="swim-lane">
+                        <div class="swim-lane" id="done-lane">
                           <h3 class="heading">Done</h3>
+                          {% for task in tasks %}
+                            {% if task.state == "done" %}
+                            <a href="{{ url_for('app_views.task', task_id=task.id) }}" class="task" data-task-id="{{ task.id }}" >
+                                <div>
+                                    {{ task.title }}
+                                </div>
+                            </a>
+                             {% endif %}
+                            {% endfor %}
                           
                         </div>
                     </div>
@@ -250,7 +269,7 @@
                     <input type="hidden" id="todo-title" name="todo-title"> <!-- Hidden input for the title -->
                     <div class="modal-footer">
                         <!--a button to view a workspace-->
-                        <button type="submit" class="btn btn-secondary" data-dismiss="modal">Save</button>
+                        <button type="submit" class="btn btn-secondary" data-dismiss="modal" id="save_btn">Save</button>
                     </div>
                     <input type="hidden" value="createtask" name="action">
                 </form>

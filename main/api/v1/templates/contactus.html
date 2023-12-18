@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="../static/contactus.css">
+</head>
+<body>
+    <div class="contact-form">
+        <div class="container">
+            <div class="main">
+                <div class="content">
+                    <h2 style="font-family: 'Courier New', Courier, monospace; font-weight: 600;">Contact Us</h2>
+                    
+                    <form action="#" method="post" id="contactForm">
+                        <input type="text" name="name" placeholder="Enter Your Name" required>
+                        <input type="email" name="email" placeholder="Enter Your Email" required>
+                        <textarea name="message" id="message" placeholder="Your Message" style="width: 100%; height: 150px;" required></textarea>
+                        
+                        <button onclick="submitForm()" class="btn">
+                            Send <i class="fas fa-paper-plane"></i> via Email
+                        </button>
+                    </form>
+                </div>
+                <div class="form-img">
+                    <!-- Add any image or content you want to display here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function submitForm() {
+            var name = document.getElementsByName("name")[0].value;
+            var email = document.getElementsByName("email")[0].value;
+            var message = document.getElementById("message").value;
+
+            var bodyContent = "Name: " + name + "\nEmail: " + email + "\nMessage: " + message;
+
+            var mailtoLink = "mailto:recipient_email@example.com";
+            mailtoLink += "?subject=Contact%20Form%20Submission";
+            mailtoLink += "&body=" + encodeURIComponent(bodyContent);
+
+            window.location.href = mailtoLink;
+        }
+    </script>
+</body>
+</html>
+

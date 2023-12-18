@@ -7,7 +7,7 @@
     box-sizing: border-box;
 }
 body {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'Poppins', sans-serif;
     /*display: flex;
     flex-direction: column;*/
 }
@@ -47,10 +47,22 @@ body {
 nav {
     position: fixed;
     top: 0;
-    background: #F2D1D1;
+    background: #A46C6C;
     height: 80px;
     width: 100%;
     z-index: 20000;
+}
+nav .btn {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  margin: 0 10px;
+  display: inline-block;
+}
+
+nav .btn:hover {
+background: #FFE6E6;
+color: #A46C6C;
 }
 nav ul {
     width: 100%;
@@ -72,20 +84,18 @@ nav ul li {
   background-color: #fff;
   vertical-align: middle;
 }*/
-label.logo-style {
-    font-size: 29px;
-    color: #000;
-    font-weight: 1000;
-    line-height: 80px;
-    padding: 0 30px;
-    size-adjust: content;
-    cursor: pointer;
+.sidebar-logo {
+    padding: 1.15rem 1.5rem;
+    width: 300px;
 }
-.logo_div{
-    margin-left: 15px;
-    width: fit-content;
-    cursor: pointer;
+
+.sidebar-logo a {
+    color: #e9ecef;
+    font-size: 1.25rem;
+    font-weight: 600;
+    font-family: 'Courier New';
 }
+
 .ulspec{
     display: flex;
     align-items: center;
@@ -107,6 +117,7 @@ label.logo-style {
     background-attachment: fixed;
     background-size: 100% 100%;
     z-index: 1;
+    opacity: 80%;
 }
 .Mainphoto h2 {
     color: #FFFFFF !important;
@@ -294,7 +305,7 @@ nav a.active, nav a:hover {
 
 /******************* FOOTER ********************/
 footer{
-    background-color: #F2D1D1;
+    background-color: #A46C6C;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
